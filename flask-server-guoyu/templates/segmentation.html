@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<style>
+    #main{
+        position:relative;
+        background-color: #f1f6f4;
+        background-image: url({{ url_for('static', filename='header-image.jpg')}});
+        background-repeat : no-repeat;
+        background-position: center;
+        background-size: cover;
+    }
+    #div_title_text{
+        color:#6c7588;
+        font-size: 40px;
+        text-align: center;
+        line-height:100px;
+    }
+    #div_module_table{
+        text-align:center;
+        font-size:30px;
+        line-height:100px;
+    }
+    #div_module_selected{
+        margin: 100px 100px;
+        border:1px solid #000;
+        width:100px;
+        height:100px;
+        background-color:#0052d9;
+        color:#ffffff
+    }
+    #div_module_unselected{
+        margin: 100px 100px;
+        border:1px solid #000;
+        width: 100px;
+        height: 100px;
+        background-color:#ffffff;
+        color:#000000
+    }
+    #select_style_options{
+    }
+    .div_style_options_line {
+        text-align:center;
+        margin:auto
+    }
+    #div_pic_table{
+        display:inline;
+        margin: 100px 100px;
+    }
+    #div_style_options_block{
+        width:280px;
+        height:210px
+    }
+    #img_source_selected{
+        margin: 0 100px;
+        width:450px;
+        height:600px
+    }
+    #img_target_selected{
+        margin: 0 100px;
+        width:450px;
+        height:600px
+    }
+</style>
+
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+</head>
+<body>
+<div id="main">
+
+<div id="div_title_text">
+功能演示
+</div>
+
+<div id="div_module_table">
+  <a href="style-transfer.html" id="div_module_unselected">Style transefer</a>
+  <a href="segmentation.html" id="div_module_selected">Segmentation</a>
+  <a href="matting.html" id="div_module_unselected">Matting</a>
+  <a href="image-fusion.html" id="div_module_unselected">Image Fusion</a>
+</div>
+
+<form style="text-align:center" action="segmentation-process" method="post">
+    <div id="div_pic_table">
+        <img id="img_source_selected" src="{{ url_for('static', filename='source-segmentation.png')}}" alt="test"/>
+        <img id="img_target_selected" src="{{ url_for('static', filename='target-segmentation.png')}}" alt="test"/>
+        <br>
+        <input type="file" onchange="this.form.submit()" name="source">
+    </div>
+</form>
+</div>
+</body>

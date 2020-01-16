@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<style>
+    #main{
+        position:relative;
+        background-color: #f1f6f4;
+        background-image: url({{ url_for('static', filename='header-image.jpg')}});
+        background-repeat : no-repeat;
+        background-position: center;
+        background-size: cover;
+    }
+    #div_title_text{
+        color:#6c7588;
+        font-size: 40px;
+        text-align: center;
+        line-height:100px;
+    }
+    #div_module_table{
+        text-align:center;
+        font-size:30px;
+        line-height:100px;
+    }
+    #div_module_selected{
+        margin: 100px 100px;
+        border:1px solid #000;
+        width:100px;
+        height:100px;
+        background-color:#0052d9;
+        color:#ffffff
+    }
+    #div_module_unselected{
+        margin: 100px 100px;
+        border:1px solid #000;
+        width: 100px;
+        height: 100px;
+        background-color:#ffffff;
+        color:#000000
+    }
+    #select_style_options{
+    }
+    .div_style_options_line {
+        text-align:center;
+        margin:auto
+    }
+    #div_pic_table{
+        display:inline;
+        margin: 100px 100px;
+    }
+    #div_style_options_block{
+        width:280px;
+        height:210px
+    }
+    #img_source_selected{
+        margin: 0 100px;
+        width:450px;
+        height:600px
+    }
+    #img_target_selected{
+        margin: 0 100px;
+        width:450px;
+        height:600px
+    }
+</style>
+
+<script type="text/javascript">
+function $(obj){
+  return document.getElementById(obj);
+}
+function show(objid){
+  $(objid).style.display='block';
+}
+function hidden(objid){
+  $(objid).style.display='none';
+}
+function doit(){
+  var sel_val=$('select_style_options').value;
+  if(sel_val==="drawings"){
+    show('div_style_options_drawings');
+    hidden('div_style_options_engraving');
+    hidden('div_style_options_iconography');
+    hidden('div_style_options_painting');
+    hidden('div_style_options_sculpture');
+  }
+  if(sel_val==="engraving"){
+    hidden('div_style_options_drawings');
+    show('div_style_options_engraving');
+    hidden('div_style_options_iconography');
+    hidden('div_style_options_painting');
+    hidden('div_style_options_sculpture');
+  }
+  if(sel_val==="iconography"){
+    hidden('div_style_options_drawings');
+    hidden('div_style_options_engraving');
+    show('div_style_options_iconography');
+    hidden('div_style_options_painting');
+    hidden('div_style_options_sculpture');
+  }
+  if(sel_val==="painting"){
+    hidden('div_style_options_drawings');
+    hidden('div_style_options_engraving');
+    hidden('div_style_options_iconography');
+    show('div_style_options_painting');
+    hidden('div_style_options_sculpture');
+  }
+  if(sel_val==="sculpture"){
+    hidden('div_style_options_drawings');
+    hidden('div_style_options_engraving');
+    hidden('div_style_options_iconography');
+    hidden('div_style_options_painting');
+    show('div_style_options_sculpture');
+  }
+
+}
+window.onload=function(){
+  var style_seleted=document.getElementById("select_style_options");
+  style_seleted.onchange=doit;
+}
+</script>
+
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+</head>
+<body>
+<div id="main">
+<div id="div_title_text">
+功能演示
+</div>
+
+<div id="div_module_table">
+  <a href="style-transfer.html" id="div_module_selected">Style transefer</a>
+  <a href="segmentation.html" id="div_module_unselected">Segmentation</a>
+  <a href="matting.html" id="div_module_unselected">Matting</a>
+  <a href="image-fusion.html" id="div_module_unselected">Image Fusion</a>
+</div>
+
+<select id="select_style_options">
+    <option value="drawings">drawings</option>
+    <option value="engraving">engraving</option>
+    <option value="iconography">iconography</option>
+    <option value="painting">painting</option>
+    <option value="sculpture">sculpture</option>
+</select>
+<br>
+
+<form style="text-align:center" action="style-transfer-process" method="post">
+    <table class="div_style_options_line" id="div_style_options_drawings" border = "1px">
+        <tr>
+            <td><input checked type="radio" name="style" value="drawings;i - 553.jpeg"v>i - 553.jpeg</td>
+            <td><input type="radio" name="style" value="drawings;i - 701.jpeg">i - 701.jpeg</td>
+            <td><input type="radio" name="style" value="drawings;i - 737.jpeg">i - 737.jpeg</td>
+            <td><input type="radio" name="style" value="drawings;i - 775.jpeg">i - 775.jpeg</td>
+            <td><input type="radio" name="style" value="drawings;i - 828.jpeg">i - 828.jpeg</td>
+        </tr>
+        <tr>
+            <td><img id="div_style_options_block" src="{{ url_for('static', filename='style/drawings/i - 553.jpeg')}}" alt="pic"></td>
+            <td><img id="div_style_options_block" src="{{ url_for('static', filename='style/drawings/i - 701.jpeg')}}" alt="pic"></td>
+            <td><img id="div_style_options_block" src="{{ url_for('static', filename='style/drawings/i - 737.jpeg')}}" alt="pic"></td>
+            <td><img id="div_style_options_block" src="{{ url_for('static', filename='style/drawings/i - 775.jpeg')}}" alt="pic"></td>
+            <td><img id="div_style_options_block" src="{{ url_for('static', filename='style/drawings/i - 828.jpeg')}}" alt="pic"></td>
+        </tr>
+    </table>
+    <table class="div_style_options_line" id="div_style_options_engraving" border = "1px" hidden>
+        <tr>
+            <td><input type="radio" name="style" value="engraving;205.jpg">205.jpg</td>
+            <td><input type="radio" name="style" value="engraving;255.jpg">255.jpg</td>
+            <td><input type="radio" name="style" value="engraving;i - 34.jpeg">i - 34.jpeg</td>
+            <td><input type="radio" name="style" value="engraving;i - 434.jpeg">i - 434.jpeg</td>
+            <td><input type="radio" name="style" value="engraving;i - 444.jpeg">i - 444.jpeg</td>
+        </tr>
+        <tr>
+            <td><img id="div_style_options_block" src="{{ url_for('static', filename='style/engraving/205.jpg')}}" alt="pic"></td>
+            <td><img id="div_style_options_block" src="{{ url_for('static', filename='style/engraving/255.jpg')}}" alt="pic"></td>
+            <td><img id="div_style_options_block" src="{{ url_for('static', filename='style/engraving/i - 34.jpeg')}}" alt="pic"></td>
+            <td><img id="div_style_options_block" src="{{ url_for('static', filename='style/engraving/i - 434.jpeg')}}" alt="pic"></td>
+            <td><img id="div_style_options_block" src="{{ url_for('static', filename='style/engraving/i - 444.jpeg')}}" alt="pic"></td>
+        </tr>
+    </table>
+    <table class="div_style_options_line" id="div_style_options_iconography" border = "1px" hidden>
+        <tr>
+            <td><input type="radio" name="style" value="iconography;i - 425.jpeg">i - 425.jpeg</td>
+            <td><input type="radio" name="style" value="iconography;i - 455.jpeg">i - 455.jpeg</td>
+            <td><input type="radio" name="style" value="iconography;i - 546.jpeg">i - 546.jpeg</td>
+            <td><input type="radio" name="style" value="iconography;i - 1332.jpeg">i - 1332.jpeg</td>
+            <td><input type="radio" name="style" value="iconography;i - 1519.jpeg">i - 1519.jpeg</td>
+        </tr>
+        <tr>
+            <td><img id="div_style_options_block" src="{{ url_for('static', filename='style/iconography/i - 425.jpeg')}}" alt="pic"></td>
+            <td><img id="div_style_options_block" src="{{ url_for('static', filename='style/iconography/i - 455.jpeg')}}" alt="pic"></td>
+            <td><img id="div_style_options_block" src="{{ url_for('static', filename='style/iconography/i - 546.jpeg')}}" alt="pic"></td>
+            <td><img id="div_style_options_block" src="{{ url_for('static', filename='style/iconography/i - 1332.jpeg')}}" alt="pic"></td>
+            <td><img id="div_style_options_block" src="{{ url_for('static', filename='style/iconography/i - 1519.jpeg')}}" alt="pic"></td>
+        </tr>
+    </table>
+    <table class="div_style_options_line" id="div_style_options_painting" border = "1px" hidden>
+        <tr>
+            <td><input type="radio" name="style" value="painting;0142.jpg">0142.jpg</td>
+            <td><input type="radio" name="style" value="painting;0730.jpg">0730.jpg</td>
+            <td><input type="radio" name="style" value="painting;0771.jpg">0771.jpg</td>
+            <td><input type="radio" name="style" value="painting;1435.jpg">1435.jpg</td>
+            <td><input type="radio" name="style" value="painting;2176.jpg">2176.jpg</td>
+        </tr>
+        <tr>
+            <td><img id="div_style_options_block" src="{{ url_for('static', filename='style/painting/0142.jpg')}}" alt="pic"></td>
+            <td><img id="div_style_options_block" src="{{ url_for('static', filename='style/painting/0730.jpg')}}" alt="pic"></td>
+            <td><img id="div_style_options_block" src="{{ url_for('static', filename='style/painting/0771.jpg')}}" alt="pic"></td>
+            <td><img id="div_style_options_block" src="{{ url_for('static', filename='style/painting/1435.jpg')}}" alt="pic"></td>
+            <td><img id="div_style_options_block" src="{{ url_for('static', filename='style/painting/2176.jpg')}}" alt="pic"></td>
+        </tr>
+    </table>
+    <table class="div_style_options_line" id="div_style_options_sculpture" border = "1px" hidden>
+        <tr>
+            <td><input type="radio" name="style" value="sculpture;29.jpg">29.jpg</td>
+            <td><input type="radio" name="style" value="sculpture;411.jpg">411.jpg</td>
+            <td><input type="radio" name="style" value="sculpture;i - 263.jpeg">i - 263.jpeg</td>
+            <td><input type="radio" name="style" value="sculpture;i - 682.jpeg">i - 682.jpeg</td>
+            <td><input type="radio" name="style" value="sculpture;i - 1047.jpeg">i - 1047.jpeg</td>
+        </tr>
+        <tr>
+            <td><img id="div_style_options_block" src="{{ url_for('static', filename='style/sculpture/29.jpg')}}" alt="pic"></td>
+            <td><img id="div_style_options_block" src="{{ url_for('static', filename='style/sculpture/411.jpg')}}" alt="pic"></td>
+            <td><img id="div_style_options_block" src="{{ url_for('static', filename='style/sculpture/i - 263.jpeg')}}" alt="pic"></td>
+            <td><img id="div_style_options_block" src="{{ url_for('static', filename='style/sculpture/i - 682.jpeg')}}" alt="pic"></td>
+            <td><img id="div_style_options_block" src="{{ url_for('static', filename='style/sculpture/i - 1047.jpeg')}}" alt="pic"></td>
+        </tr>
+    </table>
+    <br>
+    <div id="div_pic_table">
+        <img id="img_source_selected" src="{{ url_for('static', filename='source-style-transfer.png')}}" alt="test"/>
+        <img id="img_target_selected" src="{{ url_for('static', filename='target-style-transfer.png')}}" alt="test"/>
+        <br>
+        <input type="file" onchange="this.form.submit()" name="source">
+    </div>
+</form>
+</div>
+</body>

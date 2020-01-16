@@ -1,0 +1,53 @@
+#body_d{
+	background: #f1f6f4 url({{ url_for('static', filename='header-image.jpg')}}) no-repeat center;
+}
+#div_title_text{
+	color:#6c7588;
+	font-size: 40px;
+	text-align: center;
+	line-height:100px;
+}
+#div_module_table{
+	text-align:center;
+	font-size:30px;
+}
+#div_module_selected{
+	margin: 100px 100px;
+	border:1px solid #000;
+	width:100px;
+	height:100px;
+	background-color:#0052d9;
+	color:#ffffff
+}
+#div_module_unselected{
+	margin: 100px 100px;
+	border:1px solid #000;
+	width: 100px;
+	height: 100px;
+	background-color:#ffffff;
+	color:#000000
+}
+#select_style_options{
+}
+.div_style_options_line {
+	text-align:center;
+	margin:auto
+}
+#div_pic_table{
+	display:inline;
+	margin: 100px 100px;
+}
+#div_style_options_block{
+	width:280px;
+	height:210px
+}
+#img_source_selected{
+	margin: 0 100px;
+	width:600px;
+	height:800px
+}
+#img_target_selected{
+	margin: 0 100px;
+	width:600px;
+	height:800px
+}

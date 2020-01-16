@@ -1,0 +1,12 @@
+.idea/*
+.idea/
+static/source-image-fusion-1.jpg
+static/source-image-fusion-2.jpg
+static/source-matting.png
+static/source-segmentation.png
+static/source-style-transfer.png
+static/target-image-fusion-1-2.jpg
+static/target-matting.png
+static/target-segmentation.png
+static/target-style-transfer.png
+static/trimap-matting.png
